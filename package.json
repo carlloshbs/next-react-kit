@@ -1,0 +1,9 @@
+{
+  "name": "next-react-kit",
+  "version": "1.0.0",
+  "description": "next-react-kit :)",
+  "main": "index.js",
+  "repository": "https://github.com/carlloshbs/next-react-kit.git",
+  "author": "Carlos Sousa <carlloshbs@gmail.com>",
+  "license": "MIT"
+}
