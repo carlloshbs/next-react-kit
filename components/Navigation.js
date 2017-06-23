@@ -10,7 +10,10 @@ const li = styled.li`
   list-style: none;
   margin-right: 1rem;
 `;
-
+const a = styled.a`
+  color: red;
+  text-decoration: none;
+`;
 export default () =>
   <nav>
     <li>
