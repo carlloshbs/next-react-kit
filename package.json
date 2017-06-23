@@ -7,19 +7,22 @@
   "author": "Carlos Sousa <carlloshbs@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "node server.js",
-    "build": "next build && node ./scripts/default-lang",
-    "start": "NODE_ENV=production node server.js",
+    "dev": "node src/server.js",
+    "build": "next build && node ./tools/default-lang",
+    "start": "NODE_ENV=production node src/server.js",
     "lint": "yarn lint:js && yarn lint:css",
-    "lint:js": "eslint pages/*",
-    "lint:css": "stylelint pages/*",
-    "format": "prettier --write components/*.js pages/*.js"
+    "lint:js": "eslint src tools",
+    "lint:css": "stylelint \"src/**/*.js\"",
+    "format": "prettier --write src/**/*.js"
   },
   "dependencies": {
     "accepts": "^1.3.3",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
     "glob": "^7.1.2",
     "intl": "^1.2.5",
     "next": "^2.4.4",
+    "next-routes": "^1.0.28",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-intl": "^2.3.0"

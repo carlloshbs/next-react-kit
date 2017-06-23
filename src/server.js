@@ -11,12 +11,13 @@ const { createServer } = require("http");
 const accepts = require("accepts");
 const glob = require("glob");
 const next = require("next");
+const routes = require("./routes");
 
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
-const handle = app.getRequestHandler();
+const app = next({ dir: "./src", dev });
+const handle = routes.getRequestHandler(app);
 
-// Get the supported languages by looking for translations in the `lang/` dir.
+// Get the supported languages by looking for translations in the `src/messages/` dir.
 const languages = glob.sync("./lang/*.json").map(f => basename(f, ".json"));
 
 // We need to expose React Intl's locale data on the request for the user's
@@ -47,6 +48,6 @@ app.prepare().then(() => {
     handle(req, res);
   }).listen(3000, err => {
     if (err) throw err;
-    console.log("> Read on http://localhost:3000");
+    console.info("> Read on http://localhost:3000");
   });
 });

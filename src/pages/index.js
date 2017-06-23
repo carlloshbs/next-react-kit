@@ -19,7 +19,9 @@ const Title = styled.h1`
 
 const Home = ({ name }) =>
   <Layout>
-    <Head />
+    <Head>
+      <Title>Test</Title>
+    </Head>
     <p>
       <FormattedMessage id="greeting" defaultMessage="Hello, World!" />
     </p>

@@ -1,6 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import Link from "next/link";
+import { Link, Router } from "../routes";
 import styled from "styled-components";
 
 const nav = styled.nav`
@@ -12,13 +12,17 @@ const li = styled.li`
 `;
 const a = styled.a`
   color: red;
-  text-decoration: none;
 `;
 export default () =>
   <nav>
     <li>
-      <Link href="/">
-        <a><FormattedMessage id="nav.home" defaultMessage="Home" /></a>
+      <Link route="/" params={{ lang: "fr" }} pages="index.js">
+        <a><FormattedMessage id="nav.fr" defaultMessage="FR" /></a>
+      </Link>
+    </li>
+    <li>
+      <Link route="about" params={{ lang: "en" }}>
+        <a><FormattedMessage id="nav.en" defaultMessage="en" /></a>
       </Link>
     </li>
     <li>
