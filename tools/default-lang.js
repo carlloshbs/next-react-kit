@@ -3,7 +3,7 @@ const { resolve } = require("path");
 const glob = require("glob");
 
 const defaultMessages = glob
-  .sync("./lang/.messages/**/*.json")
+  .sync("../src/lang/.messages/**/*.json")
   .map(filename => readFileSync(filename, "utf8"))
   .map(file => JSON.parse(file))
   .reduce((messages, descriptors) => {

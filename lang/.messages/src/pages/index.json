@@ -1,0 +1,10 @@
+[
+  {
+    "id": "description",
+    "defaultMessage": "Test"
+  },
+  {
+    "id": "greeting",
+    "defaultMessage": "Hello, World!"
+  }
+]

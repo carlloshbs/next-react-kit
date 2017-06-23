@@ -1,0 +1,14 @@
+[
+  {
+    "id": "nav.fr",
+    "defaultMessage": "FR"
+  },
+  {
+    "id": "nav.en",
+    "defaultMessage": "en"
+  },
+  {
+    "id": "nav.about",
+    "defaultMessage": "About"
+  }
+]
