@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 import { Link, Router } from "../routes";
-import styled from "styled-components";
 
 const nav = styled.nav`
   display: flex;

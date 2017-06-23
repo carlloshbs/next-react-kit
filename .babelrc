@@ -1,6 +1,6 @@
 {
   "presets": [
-    "next/babel",
+    "next/babel"
   ],
   "plugins": [
     [
@@ -9,7 +9,8 @@
         "ssr": true,
         "displayName": true,
         "preprocess": false
-      }
+      },
+      "transform-flow-strip-types"
     ]
   ],
   "env": {

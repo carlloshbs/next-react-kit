@@ -17,4 +17,4 @@ const defaultMessages = glob
   }, {});
 
 writeFileSync("./lang/en.json", JSON.stringify(defaultMessages, null, 2));
-console.log(`> Wrote default messages to: "${resolve("./lang/en.json")}"`);
+console.info(`> Wrote default messages to: "${resolve("./lang/en.json")}"`);
