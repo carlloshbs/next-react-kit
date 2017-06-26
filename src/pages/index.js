@@ -8,6 +8,7 @@ import Layout from "../components/Layout";
 const { description } = defineMessages({
   description: {
     id: "description",
+    description: "description test",
     defaultMessage: "Test"
   }
 });
@@ -23,7 +24,11 @@ const Home = ({ name }) =>
       <Title>Test</Title>
     </Head>
     <p>
-      <FormattedMessage id="greeting" defaultMessage="Hello, World!" />
+      <FormattedMessage
+        id="greeting"
+        description="Greeting"
+        defaultMessage="Hello, World!"
+      />
     </p>
     <p>
       <FormattedNumber value={1000} />

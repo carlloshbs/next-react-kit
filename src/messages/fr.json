@@ -1,7 +1,8 @@
 {
-  "title": "Home FR",
-  "nav.home": "Accueil",
-  "nav.about": "À propos de nous",
   "description": "Test",
-  "greeting": "Bonjour !"
+  "greeting": "Hello, World!",
+  "nav.about": "About",
+  "nav.en": "en",
+  "nav.fr": "FR",
+  "title": "Home"
 }

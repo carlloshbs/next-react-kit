@@ -18,7 +18,9 @@ const app = next({ dir: "./src", dev });
 const handle = routes.getRequestHandler(app);
 
 // Get the supported languages by looking for translations in the `src/messages/` dir.
-const languages = glob.sync("./lang/*.json").map(f => basename(f, ".json"));
+const languages = glob
+  .sync("./src/messages/*.json")
+  .map(f => basename(f, ".json"));
 
 // We need to expose React Intl's locale data on the request for the user's
 // locale. This function will also cache the scripts by lang in memory.
@@ -36,7 +38,7 @@ const getLocaleDataScript = locale => {
 // We need to load and expose the translations on the request for the user's
 // locale. These will only be used in production, in dev the `defaultMessage` in
 // each message description in the source code will be used.
-const getMessages = locale => require(`./lang/${locale}.json`);
+const getMessages = locale => require(`./src/messages/${locale}.json`);
 
 app.prepare().then(() => {
   createServer((req, res) => {

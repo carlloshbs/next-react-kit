@@ -1,3 +1,8 @@
 {
+  "description": "Test",
+  "greeting": "Hello, World!",
+  "nav.about": "About",
+  "nav.en": "en",
+  "nav.fr": "FR",
   "title": "Home"
 }

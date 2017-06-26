@@ -17,17 +17,23 @@ export default () =>
   <nav>
     <li>
       <Link route="/" params={{ lang: "fr" }} pages="index.js">
-        <a><FormattedMessage id="nav.fr" defaultMessage="FR" /></a>
+        <a>
+          <FormattedMessage id="nav.fr" defaultMessage="FR" />
+        </a>
       </Link>
     </li>
     <li>
       <Link route="about" params={{ lang: "en" }}>
-        <a><FormattedMessage id="nav.en" defaultMessage="en" /></a>
+        <a>
+          <FormattedMessage id="nav.en" defaultMessage="en" />
+        </a>
       </Link>
     </li>
     <li>
       <Link href="/about">
-        <a><FormattedMessage id="nav.about" defaultMessage="About" /></a>
+        <a>
+          <FormattedMessage id="nav.about" defaultMessage="About" />
+        </a>
       </Link>
     </li>
   </nav>;

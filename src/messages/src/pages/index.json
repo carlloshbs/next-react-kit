@@ -1,10 +1,12 @@
 [
   {
     "id": "description",
+    "description": "description test",
     "defaultMessage": "Test"
   },
   {
     "id": "greeting",
+    "description": "Greeting",
     "defaultMessage": "Hello, World!"
   }
 ]
