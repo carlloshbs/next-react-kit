@@ -1,8 +1,8 @@
 {
-  "description": "Test",
+  "description": "Test DE",
   "greeting": "Hello, World!",
-  "nav.about": "About",
-  "nav.fr": "FR",
+  "nav.about": "DE",
+  "nav.fr": "DE",
   "sitemap.title.forms": "Forms",
   "sitemap.title.i18n": "i18n",
   "sitemap.title.index": "Test",

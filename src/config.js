@@ -17,7 +17,7 @@ module.exports = {
   // API Gateway
   api: {
     // API URL to be used in the client-side code
-    clientUrl: process.env.API_CLIENT_URL || "",
+    clientUrl: "https://api.graph.cool/simple/v1/cixmkt2ul01q00122mksg82pn",
     // API URL to be used in the server-side code
     serverUrl:
       process.env.API_SERVER_URL ||

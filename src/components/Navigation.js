@@ -16,7 +16,7 @@ const a = styled.a`
 export default () =>
   <nav>
     <li>
-      <Link route="/" params={{ lang: "fr" }} pages="index.js">
+      <Link href="/">
         <a>
           <FormattedMessage id="nav.fr" defaultMessage="FR" />
         </a>
