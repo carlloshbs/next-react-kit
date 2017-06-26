@@ -2,7 +2,9 @@
   "description": "Test",
   "greeting": "Hello, World!",
   "nav.about": "About",
-  "nav.en": "en",
   "nav.fr": "FR",
+  "sitemap.title.forms": "Forms",
+  "sitemap.title.i18n": "i18n",
+  "sitemap.title.index": "Test",
   "title": "Home"
 }

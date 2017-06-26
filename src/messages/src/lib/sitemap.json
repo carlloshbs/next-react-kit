@@ -1,0 +1,14 @@
+[
+  {
+    "id": "sitemap.title.index",
+    "defaultMessage": "Test"
+  },
+  {
+    "id": "sitemap.title.forms",
+    "defaultMessage": "Forms"
+  },
+  {
+    "id": "sitemap.title.i18n",
+    "defaultMessage": "i18n"
+  }
+]

@@ -6,23 +6,23 @@ Intl.NumberFormat = IntlPolyfill.NumberFormat;
 Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
 
 const { readFileSync } = require("fs");
-const { basename } = require("path");
-const { createServer } = require("http");
-const accepts = require("accepts");
-const glob = require("glob");
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const requestLanguage = require("express-request-language");
+const bodyParser = require("body-parser");
 const next = require("next");
 const routes = require("./routes");
 
+const config = require("./config");
+
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dir: "./src", dev });
-const handle = routes.getRequestHandler(app);
+// const handler = routes.getRequestHandler(app);
+const handler = routes.getRequestHandler(app, ({ req, res, route, query }) => {
+  app.render(req, res, route.page, query);
+});
 
-// Get the supported languages by looking for translations in the `./src/messages/` dir.
-const languages = glob
-  .sync("./src/messages/*.json")
-  .map(f => basename(f, ".json"));
-
-console.info(languages);
+console.info(config.locales);
 // We need to expose React Intl's locale data on the request for the user's
 // locale. This function will also cache the scripts by lang in memory.
 const localeDataCache = new Map();
@@ -42,15 +42,27 @@ const getLocaleDataScript = locale => {
 const getMessages = locale => require.resolve(`./messages/${locale}.json`);
 
 app.prepare().then(() => {
-  createServer((req, res) => {
-    const accept = accepts(req);
-    const locale = accept.language(dev ? ["en"] : languages);
-    req.locale = locale;
-    req.localeDataScript = getLocaleDataScript(locale);
-    req.messages = dev ? {} : getMessages(locale);
-    handle(req, res);
-  }).listen(3000, err => {
+  const server = express();
+  server.use(cookieParser());
+  server.use(
+    requestLanguage({
+      languages: config.locales,
+      queryName: "language",
+      cookie: {
+        name: "language",
+        options: {
+          path: "/",
+          maxAge: 3650 * 24 * 3600 * 1000 // 10 years in miliseconds
+        },
+        url: "/language/{language}"
+      }
+    })
+  );
+  server.use(bodyParser.urlencoded({ extended: true }));
+  server.use(bodyParser.json());
+
+  server.use(handler).listen(config.port, err => {
     if (err) throw err;
-    console.info("> Read on http://localhost:3000");
+    console.info(`> Read on http://localhost:${config.port}/`);
   });
 });

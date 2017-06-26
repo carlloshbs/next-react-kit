@@ -23,13 +23,6 @@ export default () =>
       </Link>
     </li>
     <li>
-      <Link route="about" params={{ lang: "en" }}>
-        <a>
-          <FormattedMessage id="nav.en" defaultMessage="en" />
-        </a>
-      </Link>
-    </li>
-    <li>
       <Link href="/about">
         <a>
           <FormattedMessage id="nav.about" defaultMessage="About" />
