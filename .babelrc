@@ -9,8 +9,7 @@
         "ssr": true,
         "displayName": true,
         "preprocess": false
-      },
-      "transform-flow-strip-types"
+      }
     ]
   ],
   "env": {
@@ -24,7 +23,7 @@
         [
           "react-intl",
           {
-            "messagesDir": "src/messages/"
+            "messagesDir": "./src/messages/"
           }
         ]
       ]

@@ -7,14 +7,9 @@
 module.exports = {
   parser: "babel-eslint",
 
-  extends: [
-    "airbnb",
-    "plugin:flowtype/recommended",
-    "prettier",
-    "prettier/react"
-  ],
+  extends: ["airbnb", "prettier", "prettier/react"],
 
-  plugins: ["react", "jsx-a11y", "import", "flowtype", "prettier"],
+  plugins: ["react", "jsx-a11y", "import", "prettier"],
 
   parserOptions: {
     ecmaVersion: 7,
@@ -46,7 +41,7 @@ module.exports = {
 
     "react/jsx-filename-extension": "off",
 
-    // not needed if we have flow static typing
+    // prop-types typing
     "react/prop-types": "off",
 
     // Ensures an imported module can be resolved to a module on the local filesystem.
@@ -71,9 +66,6 @@ module.exports = {
   },
 
   settings: {
-    flowtype: {
-      onlyFilesWithFlowAnnotation: "true"
-    },
     // Allow absolute paths in imports, e.g. import Button from 'components/Button'
     // https://github.com/benmosher/eslint-plugin-import/tree/master/resolvers
     "import/resolver": {
