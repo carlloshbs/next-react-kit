@@ -21,8 +21,8 @@ const Title = styled.h1`
 const Home = ({ name }) =>
   <Layout>
     <Head />
+    <Title>Test</Title>
     <p>
-      <Title>Test</Title>
       <FormattedMessage
         id="greeting"
         description="Greeting"

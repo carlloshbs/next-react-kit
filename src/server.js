@@ -26,6 +26,7 @@ console.info(config.locales);
 // We need to expose React Intl's locale data on the request for the user's
 // locale. This function will also cache the scripts by lang in memory.
 const localeDataCache = new Map();
+
 const getLocaleDataScript = locale => {
   const lang = locale.toString().split("-")[0];
   if (!localeDataCache.has(lang)) {
@@ -39,7 +40,7 @@ const getLocaleDataScript = locale => {
 // We need to load and expose the translations on the request for the user's
 // locale. These will only be used in production, in dev the `defaultMessage` in
 // each message description in the source code will be used.
-const getMessages = locale => require.resolve(`./messages/${locale}.json`);
+const getMessages = locale => require(`./messages/${locale}.json`);
 
 app.prepare().then(() => {
   const server = express();
@@ -60,7 +61,18 @@ app.prepare().then(() => {
   );
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(bodyParser.json());
-
+  server.set("json replacer", true);
+  server.use((req, res, next) => {
+    req.locale = req.cookies.language;
+    req.localeDataScript = getLocaleDataScript(req.locale);
+    if (!(req.locale === "en")) {
+      req.messages = getMessages(req.locale);
+    }
+    // res.locals = {
+    //  language: req.cookies.language
+    // };
+    next();
+  });
   server.use(handler).listen(config.port, err => {
     if (err) throw err;
     console.info(`> Read on http://localhost:${config.port}/`);

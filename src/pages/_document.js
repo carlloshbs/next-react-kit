@@ -8,17 +8,18 @@ import config from "../config";
 export default class IntlDocument extends Document {
   static async getInitialProps(context) {
     const props = await super.getInitialProps(context);
-    const { req: { locale, localeDataScript, locales } } = context;
+    const { req: { locale, localeDataScript } } = context;
     return {
       ...props,
       locale,
-      localeDataScript,
-      locales
+      localeDataScript
     };
   }
 
   render() {
-    const { locale, localeDataScript, locales } = this.props;
+    const { locale, localeDataScript } = this.props;
+    const polyfill = `https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.${this
+      .props.locale}`;
     const sheet = new ServerStyleSheet();
     const main = sheet.collectStyles(<Main />);
     const styleTags = sheet.getStyleElement();
@@ -82,9 +83,7 @@ export default class IntlDocument extends Document {
         <body>
           <div className="root">
             {/* Polyfill Intl API for older browsers */}
-            <script
-              src={`https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.${locale}`}
-            />
+            <script src={polyfill} />
             <script // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: localeDataScript }}
             />
