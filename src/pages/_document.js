@@ -5,7 +5,7 @@ import config from "../config";
 // The document (which is SSR-only) needs to be customized to:
 // - expose the locale data for the user's locale for React Intl to work in the browser.
 // - styled component use
-export default class MyDocument extends Document {
+export default class IntlDocument extends Document {
   static async getInitialProps(context) {
     const props = await super.getInitialProps(context);
     const { req: { locale, localeDataScript, locales } } = context;

@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 const About = props =>
   <Layout>
     <p>
-      <a>{props.url.query.lang}</a>
+      <a>{props.url.query.language}</a>
     </p>
   </Layout>;
 
