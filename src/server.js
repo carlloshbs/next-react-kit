@@ -17,10 +17,10 @@ const config = require("./config");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dir: "./src", dev });
-// const handler = routes.getRequestHandler(app);
-const handler = routes.getRequestHandler(app, ({ req, res, route, query }) => {
-  app.render(req, res, route.page, query);
-});
+const handle = routes.getRequestHandler(app);
+// const handle = routes.getRequestHandler(app, ({ req, res, route, query }) => {
+//  app.render(req, res, route.page, query);
+// });
 
 console.info(config.locales);
 // We need to expose React Intl's locale data on the request for the user's
@@ -43,28 +43,32 @@ const getLocaleDataScript = locale => {
 const getMessages = locale => require(`./messages/${locale}.json`);
 
 app.prepare().then(() => {
+  // Use express server
   const server = express();
   server.use(cookieParser());
-  server.use(
-    requestLanguage({
-      languages: config.locales,
-      queryName: "language",
-      cookie: {
-        name: "language",
-        options: {
-          path: "/",
-          maxAge: 3650 * 24 * 3600 * 1000 // 10 years in miliseconds
-        },
-        url: "/language/{language}"
-      }
-    })
-  );
+
+  // Use body parser
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(bodyParser.json());
-  server.set("json replacer", true);
+
+  // Lang on url
   server.use((req, res, next) => {
-    req.locale = req.cookies.language;
+    const match = req.url.match(/^\/([A-Z]{2})([\/\?].*)?$/i);
+    if (match) {
+      req.locale = match[1];
+      console.info(req.locale);
+      req.url = match[2] || "/";
+    }
+    if (!(config.locales.indexOf(req.locale) > -1)) {
+      req.locale = "en";
+    }
+    next();
+  });
+
+  // Getmessages based on lang
+  server.use((req, res, next) => {
     req.localeDataScript = getLocaleDataScript(req.locale);
+
     if (!(req.locale === "en")) {
       req.messages = getMessages(req.locale);
     }
@@ -73,7 +77,11 @@ app.prepare().then(() => {
     // };
     next();
   });
-  server.use(handler).listen(config.port, err => {
+
+  // server.get("*", (req, res) => handle(req, res));
+
+  // Start server
+  server.use(handle).listen(config.port, err => {
     if (err) throw err;
     console.info(`> Read on http://localhost:${config.port}/`);
   });
